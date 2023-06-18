@@ -1,35 +1,17 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Generate CV
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+name: Build LaTeX document
+on: [push]
 jobs:
-  build-cv:
+  build_latex:
     runs-on: ubuntu-latest
-  
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: access to file
-        run: chmod u+r+x run.sh
-      - name: access to df
-        run: chmod u+r+x main.tex
-      - name: Create docker image for CV building
-        run: ./run.sh
-        shell: bash
-      - name: Upload CV
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+      - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
-          name: cv.pdf
-          path: CV/cv.pdf
+          name: PDF
+          path: main.pdf
