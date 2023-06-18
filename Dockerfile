@@ -16,4 +16,4 @@ RUN apt-get update && \
         texlive-generic-extra
 COPY src /tmp
 WORKDIR /tmp
-ENTRYPOINT /bin/bash ./entrypoint.sh
+ENTRYPOINT /bin/bash ./run.sh
