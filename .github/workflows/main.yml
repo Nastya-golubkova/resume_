@@ -24,7 +24,7 @@ jobs:
       - name: access to file
         run: chmod u+r+x run.sh
       - name: Create docker image for CV building
-        run: ./run.sh
+        run: ./entrypoint.sh
         shell: bash
       - name: Upload CV
         uses: actions/upload-artifact@v3
