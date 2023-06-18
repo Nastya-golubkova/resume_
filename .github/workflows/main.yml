@@ -22,7 +22,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: access to file
-        run: chmod u+r+x run.sh
+        run: chmod u+r+x entrypoint.sh
       - name: Create docker image for CV building
         run: ./entrypoint.sh
         shell: bash
